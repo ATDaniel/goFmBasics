@@ -30,9 +30,33 @@ func main() {
 
 	myPerson := NewPerson("Drew", 31)
 	fmt.Println("address of allocated memory", &myPerson.Name)
-	// fmt.Printf("This is my person %+v\n", myPerson)
-
 	myPerson.changeName("Marc")
 
-	fmt.Printf("This is my new person %+v", myPerson)
+	a := 7
+	b := &a // This is a pointer to `a`
+	fmt.Println(b)
+	*b = 9
+	// This is a reference to the value of b, which is a's location. It's assigning 9 to the address 
+	// that b points to, which is a's value, changing the value of a.
+	// Asterisc is also doing what's called "Dereferencing" here, which is the process described above.
+	// *b == a; b == &a
+	fmt.Println(a)
+
+	fmt.Printf("This is my new person %+v\n", myPerson)
+
+	mySlice := []int {
+		1, 2, 3,
+	}
+
+	// Using underscore instead of 'index' tells the compiler to ignore the value that's returned by range
+	// since we're not going to use it. But, this only increments the copy, not the actual value
+	// for _, value := range mySlice {
+	// 	value++
+	// }
+
+	for index, _ := range mySlice {
+		mySlice[index]++
+	}
+
+	fmt.Println(mySlice)
 }
